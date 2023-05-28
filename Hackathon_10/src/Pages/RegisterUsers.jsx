@@ -15,28 +15,44 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import Logo from '../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
+import Axios from '../AxiosInstance';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+    
+    Axios.post("/register", {
+      firstname: data.get('firstname'),
+      lastname: data.get('lastname'),
+      username: data.get('username'),
       password: data.get('password'),
-    });
+      nationalId: data.get('national_id'),
+      age: data.get('age'),
+    }).then((data)=>{
+      console.log(data.data);
+      if(data.data.success) {
+        navigate("/Home")
+      }else {
+        alert(data.data.message)
+        console.log(data.data);
+
+      }
+    }).catch((e)=>alert(e))
   };
 
-  let navigate = useNavigate();
+  
   const handleClick = (destination) => {
     navigate(destination);
   }
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Card sx={{ display: 'flex', border: 'black', borderRadius: '20px', width: '500px', height: '600px', justifyContent: 'center' }}>
+      <Card sx={{ display: 'flex', border: 'black', borderRadius: '20px', width: '500px', height: '700px', justifyContent: 'center' }}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -109,14 +125,31 @@ export default function SignUp() {
                     autoComplete="age"
                   />
                 </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    id="district"
+                    label="District"
+                    name="district"
+                    autoComplete="district"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    
+                    fullWidth
+                    id="experience"
+                    label="Experience"
+                    name="experience"
+                    autoComplete="experience"
+                  />
+                </Grid>
               </Grid>
               <Box sx={{ display: 'flex' }}>
-                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,fontFamily: 'readex-fonts'}} onClick={() => handleClick("/RegisterEmployer")}>
-                  Employer
+                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,fontFamily: 'readex-fonts'}} onClick={() => handleSubmit()}>
+                  Sign up
                 </Button>
-                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, ml: 2 ,fontFamily: 'readex-fonts'}} onClick={() => handleClick("/RegisterGuard")}>
-                  Guard
-                </Button>
+                
               </Box>
             </Box>
           </Box>

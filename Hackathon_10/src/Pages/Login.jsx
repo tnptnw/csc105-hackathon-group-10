@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Card } from '@mui/material';
 import Logo from '../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
+import Axios from '../AxiosInstance';
  
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -22,20 +23,23 @@ import { useNavigate } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+
+    Axios.post("/login", {
+      username: data.get('username'),
       password: data.get('password'),
-    });
+    }).then((data)=>{
+      if(data.data.success) {
+        navigate("/Home")
+      }else {
+        alert(data.data.message)
+      }
+    }).catch((e)=>alert(e))
   };
-
-  let navigate = useNavigate();
-  const handleClick = (destination) => {
-    navigate(destination);
-  }
-
+  
   return (
     <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
     <ThemeProvider theme={defaultTheme}>
@@ -76,7 +80,6 @@ export default function SignIn() {
               autoComplete="current-password"
             />
             <Button
-              onClick={() => handleClick("/Home")}
               type="submit"
               fullWidth
               variant="contained"
@@ -86,7 +89,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2" sx={{fontFamily: 'readex-fonts'}} onClick={() => handleClick("/RegisterUsers")}>
+              <Link href="#" variant="body2" sx={{ fontFamily: 'readex-fonts' }} onClick={() => handleClick("/RegisterUsers")}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

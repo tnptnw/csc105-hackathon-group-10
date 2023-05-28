@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Typography,
@@ -15,12 +15,18 @@ import id3 from "../assets/Bodyguard5.jpg";
 import id4 from "../assets/Bodyguard1.jpg";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import Axios from '../AxiosInstance';
 
 const ProfileEmployer = () => {
   let navigate = useNavigate();
   const handleClick = (destination) => {
     navigate(destination);
   };
+
+  useEffect(() => {
+    Axios.get("/employ_info")
+  }, [])
+  
   return (
     <>
       <Navbar />

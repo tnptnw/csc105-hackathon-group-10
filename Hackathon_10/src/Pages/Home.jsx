@@ -8,6 +8,7 @@ import Bodyguard5 from '../assets/Bodyguard5.jpg'
 import Navbar from '../Pages/Navbar'
 import Logo from '../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
+import Axios from '../AxiosInstance';
 
 
 export const Home = () => {

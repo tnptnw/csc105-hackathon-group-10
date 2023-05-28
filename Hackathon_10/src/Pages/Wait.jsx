@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Logo from '../assets/Logo.png'
 import Navbar from './Navbar'
+import Axios from '../AxiosInstance';
 
 const Wait = () => {
   return (

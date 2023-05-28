@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../assets/Logo.png'
 import { Box, Typography, Grid , Button, CardMedia, Card, CardActionArea, CardContent} from '@mui/material';
 import Navbar from './Navbar'
+import Axios from '../AxiosInstance';
 
 const Wait = () => {
   return (

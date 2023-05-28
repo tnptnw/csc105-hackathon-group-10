@@ -13,9 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from '../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
+import Axios from '../AxiosInstance';
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Logout'];
+const settings = ['/ProfileEmployer', '/Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

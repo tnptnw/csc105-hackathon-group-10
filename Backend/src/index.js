@@ -1,10 +1,10 @@
+const cors = require("cors") ;
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
-var cookieParser = require('cookie-parser')
+var cookieParser = require("cookie-parser");
 const port = 3000;
-
 
 const connection = mysql.createConnection({
   host: "db.cshack.site",
@@ -14,16 +14,17 @@ const connection = mysql.createConnection({
   database: "group10",
 });
 
-connection.connect(function(err) {
-    if (err) {
-      console.error('error connecting: ' + err.stack);
-      return;
-    }
-   
-    console.log('connected as id ' + connection.threadId);
-  });
+app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+connection.connect(function (err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
 
-  global.connection = connection
+  console.log("connected as id " + connection.threadId);
+});
+
+global.connection = connection;
 
 console.log("Database is connected");
 
@@ -36,11 +37,11 @@ app.listen(port, () => {
 
 app.use(cookieParser());
 app.post("/login", require("./routes/login"));
-app.post("/register" , require("./routes/register"));
-app.post("/guardRegis" , require("./routes/register_guard"));
-app.post("/employRegis", require('./routes/register_employ'));
-app.get("/listGuard", require('./routes/list_guard'));
-app.get('/employInfo', require('./routes/employ_info'));
-app.get('/userProfile' , require('./routes/user_profile'));
-app.patch('/updateProfile' ,require('./routes/update_profile'));
-app.delete('/deleteProfile', require('./routes/delete_profile'));
+app.post("/register", require("./routes/register"));
+app.post("/guardRegis", require("./routes/register_guard"));
+app.post("/employRegis", require("./routes/register_employ"));
+app.get("/listGuard", require("./routes/list_guard"));
+app.get("/employInfo", require("./routes/employ_info"));
+app.get("/userProfile", require("./routes/user_profile"));
+app.patch("/updateProfile", require("./routes/update_profile"));
+app.delete("/deleteProfile", require("./routes/delete_profile"));

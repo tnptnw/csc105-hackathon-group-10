@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Box,
     Typography,
@@ -16,12 +16,22 @@ import {
   import id4 from "../assets/Bodyguard1.jpg";
   import Navbar from "./Navbar";
   import { useNavigate } from 'react-router-dom';
+  import Axios from '../AxiosInstance';
 
 const EditProfileE = () => {
-
+const [data, setData] = useState({
+    name: '',
+    age: "",
+    phonenUmber: "",
+    district: ""
+})
     let navigate = useNavigate();
-  const handleClick = (destination) => {
-    navigate(destination);
+  const handleClick = () => {
+   console.log(data);
+  }
+
+  const handleChange = (e, target) => {
+    setData((data) =>{ return {...data, [`${target}`]: e.target.value}})
   }
 
   return (
@@ -90,21 +100,31 @@ const EditProfileE = () => {
                           label="Name"
                           fullWidth
                           sx={{ fontFamily: "readex-fonts" }}
+                          value={data.name}
+                          onChange={(e) => handleChange(e, "name")}
                         />
                         <TextField
                           label="Age"
                           fullWidth
                           sx={{ fontFamily: "readex-fonts" }}
+                          value={data.age}
+                          onChange={(e) => handleChange(e, "age")}
+
                         />
                         <TextField
                           label="Phone Number"
                           fullWidth
                           sx={{ fontFamily: "readex-fonts" }}
+                          value={data.phonenUmber}
+                          onChange={(e) => handleChange(e, "phoneNumber")}
+
                         />
                         <TextField
                           label="District"
                           fullWidth
                           sx={{ fontFamily: "readex-fonts" }}
+                          value={data.district}
+                          onChange={(e) => handleChange(e, "district")}
                         />
                       </Box>
                       <Button
@@ -118,7 +138,7 @@ const EditProfileE = () => {
                           fontFamily: "readex-fonts",
                           width: "180px",
                         }}
-                        onClick={() => handleClick("/ProfileEmployer")}
+                        onClick={() => handleClick()}
                       >
                         Submit
                       </Button>
