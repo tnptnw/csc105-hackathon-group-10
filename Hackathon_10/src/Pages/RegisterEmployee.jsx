@@ -16,6 +16,7 @@ import { Card } from '@mui/material';
 import Logo from '../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
 import Axios from '../AxiosInstance';
+import Pic1 from '../assets/MarkZuckerberg.webp'
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -41,7 +42,7 @@ export default function SignUp() {
   return (
     <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
     <ThemeProvider theme={defaultTheme}>
-    <Card sx={{display:'flex',border:'black',borderRadius:'20px',width:'500px',height:'400px',justifyContent:'center'}}>
+    <Card sx={{display:'flex',border:'black',borderRadius:'20px',width:'500px',height:'500px',justifyContent:'center'}}>
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <Box
@@ -52,7 +53,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <img src={Logo} alt="Logo" style={{ height: '30px', marginRight: '8px',margin:'20px',width:'40%',height:'15%' }} />
+          <img src={Pic1} alt="Logo" style={{ height: '30px', marginRight: '8px',margin:'20px',width:'40%',height:'15%' }} />
           <Typography component="h1" variant="h5" sx={{fontFamily: 'readex-fonts'}}>
             Sign up
           </Typography>

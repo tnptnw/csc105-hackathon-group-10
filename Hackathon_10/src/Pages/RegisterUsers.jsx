@@ -52,7 +52,7 @@ export default function SignUp() {
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Card sx={{ display: 'flex', border: 'black', borderRadius: '20px', width: '500px', height: '700px', justifyContent: 'center' }}>
+      <Card sx={{ display: 'flex', border: 'black', borderRadius: '20px', width: '500px', height: '600px', justifyContent: 'center' }}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -125,7 +125,7 @@ export default function SignUp() {
                     autoComplete="age"
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <TextField
                     fullWidth
                     id="district"
@@ -143,7 +143,7 @@ export default function SignUp() {
                     name="experience"
                     autoComplete="experience"
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
               <Box sx={{ display: 'flex' }}>
                 <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,fontFamily: 'readex-fonts'}} onClick={() => handleSubmit()}>
