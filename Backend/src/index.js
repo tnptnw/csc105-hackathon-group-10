@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
+var cookieParser = require('cookie-parser')
 const port = 3000;
+
 
 const connection = mysql.createConnection({
   host: "db.cshack.site",
@@ -21,6 +23,8 @@ connection.connect(function(err) {
     console.log('connected as id ' + connection.threadId);
   });
 
+  global.connection = connection
+
 console.log("Database is connected");
 
 // parse various different custom JSON types as JSON
@@ -30,32 +34,13 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-
-app.post("/login", (req, res) => {
-  // The JSON body
-  const payload = req.body;
-
-  connection.query(
-    `INSERT INTO users (username) VALUES (?)`, [payload.username], (err, rows) => {
-      // Check if cannot find the data in the database then return the e nrror
-      if (err) {
-        res.json({
-          success: false,
-          data: null,
-          error: err.message,
-        });
-      } else {
-        // Return data to the client if success
-        console.log(rows);
-        if (rows) {
-          res.json({
-            success: true,
-            data: {
-              message: "create success",
-            },
-          });
-        }
-      }
-    }
-  );
-});
+app.use(cookieParser());
+app.post("/login", require("./routes/login"));
+app.post("/register" , require("./routes/register"));
+app.post("/guardRegis" , require("./routes/register_guard"));
+app.post("/employRegis", require('./routes/register_employ'));
+app.get("/listGuard", require('./routes/list_guard'));
+app.get('/employInfo', require('./routes/employ_info'));
+app.get('/userProfile' , require('./routes/user_profile'));
+app.patch('/updateProfile' ,require('./routes/update_profile'));
+app.delete('/deleteProfile', require('./routes/delete_profile'));
