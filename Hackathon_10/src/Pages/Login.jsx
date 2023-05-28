@@ -16,6 +16,7 @@ import { Card } from '@mui/material';
 import Logo from '../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
 import Axios from '../AxiosInstance';
+
  
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -23,6 +24,8 @@ import Axios from '../AxiosInstance';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+  
   let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -89,7 +92,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item>
-              <Link href="#" variant="body2" sx={{ fontFamily: 'readex-fonts' }} onClick={() => handleClick("/RegisterUsers")}>
+              <Link href="#" variant="body2" sx={{ fontFamily: 'readex-fonts' }} onClick={() => navigate("/RegisterUsers")}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

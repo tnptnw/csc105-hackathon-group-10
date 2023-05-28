@@ -14,6 +14,7 @@ import {
   import id2 from "../assets/Bodyguard4.jpg";
   import id3 from "../assets/Bodyguard5.jpg";
   import id4 from "../assets/Bodyguard1.jpg";
+  import jerry from "../assets/jerrymeme.jpg"
   import Navbar from "./Navbar";
   import { useNavigate } from 'react-router-dom';
   import Axios from '../AxiosInstance';
@@ -71,7 +72,7 @@ const [data, setData] = useState({
                     boxShadow: "5px 10px #888888",
                   }}
                 >
-                  <img src={id1} style={{ width: "250px", height: "250px" }} />
+                  <img src={jerry} style={{ width: "250px", height: "250px" , borderRadius : '20px' , marginRight : '20px' , marginTop : '20px'}} />
                   <Box sx={{ width: "40%" }}>
                     <div style={{ width: "100%", textAlign: "center" }}>
                       <Typography

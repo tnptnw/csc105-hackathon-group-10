@@ -10,6 +10,7 @@ import {
   CardContent,
 } from "@mui/material";
 import id1 from "../assets/Bodyguard3.jpg";
+import mark from "../assets/mark.png"
 import Navbar from "./Navbar";
 import Axios from "../AxiosInstance";
 import { useState, useEffect } from "react";
@@ -73,7 +74,7 @@ export const Result = () => {
                         md={3}
                         sx={{ display: "flex", justifyContent: "center" }}
                       >
-                        <CardMedia component="img" height="150" image={id1} />
+                        <CardMedia component="img"  image={mark} />
                       </Grid>
                       <Grid item xs={9} md={9}>
                         <CardContent>
@@ -86,14 +87,14 @@ export const Result = () => {
                           >
                             {guardItem.title}
                           </Typography>
-                          <Typography sx={{ fontFamily: "readex-fonts" }}>
-                            {guardItem.name}
+                          <Typography sx={{ fontFamily: "readex-fonts" , fontSize : '30px'}}>
+                            {guardItem.name} {guardItem.surname}
+                          </Typography>
+                          <Typography sx={{ fontFamily: "readex-fonts" , fontSize : '25px'}}>
+                            Age :: {guardItem.age}
                           </Typography>
                           <Typography sx={{ fontFamily: "readex-fonts" }}>
-                            {guardItem.age}
-                          </Typography>
-                          <Typography sx={{ fontFamily: "readex-fonts" }}>
-                            {guardItem.phoneNumber}
+                            Experience :: {guardItem.phoneNumber}
                           </Typography>
                           <Typography sx={{ fontFamily: "readex-fonts" }}>
                             {guardItem.experience}
