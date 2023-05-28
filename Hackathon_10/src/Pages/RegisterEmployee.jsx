@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Card } from '@mui/material';
+import Logo from '../assets/Logo.png';
+import { useNavigate } from 'react-router-dom';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -28,9 +31,17 @@ export default function SignUp() {
     });
   };
 
+  let navigate = useNavigate();
+  const handleClick = (destination) => {
+    navigate(destination);
+  }
+
+
   return (
+    <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+    <Card sx={{display:'flex',border:'black',borderRadius:'20px',width:'500px',height:'400px',justifyContent:'center'}}>
+      <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <Box
           sx={{
@@ -40,10 +51,8 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+          <img src={Logo} alt="Logo" style={{ height: '30px', marginRight: '8px',margin:'20px',width:'40%',height:'15%' }} />
+          <Typography component="h1" variant="h5" sx={{fontFamily: 'readex-fonts'}}>
             Sign up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -64,21 +73,17 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 ,fontFamily: 'readex-fonts'}}
+              onClick={() => handleClick("/Home")}
             >
-              Guard
+              Sign Up
             </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 , ml:2 }}
-            >
-                Employee
-            </Button>
+            
           </Box>
         </Box>
       </Container>
+    </Card>
     </ThemeProvider>
+    </Box>
   );
 }

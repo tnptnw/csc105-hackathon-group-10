@@ -12,8 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
+import { Card } from '@mui/material';
+import Logo from '../assets/Logo.png';
+import { useNavigate } from 'react-router-dom';
+ 
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -29,8 +31,15 @@ export default function SignIn() {
     });
   };
 
+  let navigate = useNavigate();
+  const handleClick = (destination) => {
+    navigate(destination);
+  }
+
   return (
+    <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
     <ThemeProvider theme={defaultTheme}>
+    <Card sx={{ display: 'flex', border: 'black', borderRadius: '20px', width: '500px', height: '525px', justifyContent: 'center'}}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -41,20 +50,18 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <img src={Logo} alt="Logo" style={{ height: '30px', marginRight: '8px',margin:'20px',width:'40%',height:'15%' }} />
+          <Typography component="h1" variant="h5" sx={{fontFamily: 'readex-fonts'}}>
+            Sign In
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
+              id="username"
+              label="Username"
+              name="username"
               autoComplete="email"
               autoFocus
             />
@@ -68,26 +75,18 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
+              onClick={() => handleClick("/Home")}
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2,fontFamily: 'readex-fonts'}}
             >
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{fontFamily: 'readex-fonts'}} onClick={() => handleClick("/RegisterUsers")}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -96,6 +95,8 @@ export default function SignIn() {
         </Box>
         
       </Container>
+      </Card>
     </ThemeProvider>
+    </Box>
   );
 }

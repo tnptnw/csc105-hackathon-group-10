@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 } */
+
+@font-face {
+  font-family:readex-fonts-bold;
+  src: url(./fonts/ReadexPro-bold.ttf);
+}
+
+@font-face {
+  font-family:readex-fonts-light;
+  src: url(./fonts/ReadexPro-Light.ttf);
+}
+
+@font-face {
+  font-family:readex-fonts;
+  src: url(./fonts/ReadexPro-Medium.ttf);
+}
